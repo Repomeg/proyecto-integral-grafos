@@ -6,6 +6,9 @@ const btn1 = document.querySelector(".btn1");
 let txtC; // --> Info Coordenada txt ingresado
 let txtC_separado = [];
 
+let txtD; // --> Info Distribucion txt ingresado
+let txtD_separado = [];
+
 let lat1_ej = -53.783333;
 let lon1_ej = -67.7; 
 let lat2_ej = -54.807222; 
@@ -29,14 +32,14 @@ class distribucion{
     }
 }
 
-const info_usuario = new puntos;
+const info_C = new puntos;
+const info_D = new distribucion;
 
 //Funcion Guardar Info txt Coordenada 
 const guardarTxtC = () => {
     txtC = document.getElementById("pantalla").value;
 }
 
-//Funciones para Guarar txt Coordenada en class
 const separarTxtC = () => {
     let aux = txtC.split('\n');
     let num = aux.length;
@@ -59,14 +62,46 @@ const guardarClassC = () => {
     }
 
     for(let m=0;m<numi;m++){
-        info_usuario.t.push(sep[m][0]);
-        info_usuario.n.push(sep[m][1]);
-        info_usuario.x.push(Number.parseInt(sep[m][2]));
-        info_usuario.y.push(Number.parseInt(sep[m][3]));
+        info_C.t.push(sep[m][0]);
+        info_C.n.push(sep[m][1]);
+        info_C.x.push(Number.parseInt(sep[m][2]));
+        info_C.y.push(Number.parseInt(sep[m][3]));
     }
-    console.log(info_usuario);
+    console.log(info_C);
 }
 
+//Funcion Guardar Info txt Distribucion
+const guardarTxtD = () => {
+    txtD = document.getElementById("pantalla-dis").value;
+}
+
+const separarTxtD= () => {
+    let aux = txtD.split('\n');
+    let numi = aux.length;
+
+    for(let ii=0;ii<numi;ii++){
+        txtD_separado.push(aux[ii])
+    }
+    console.log(txtD_separado);
+}
+
+const guardarClassD = () => {
+    let numo = txtD_separado.length;
+
+    let aux = [];
+    let sep = [];
+
+    for(let ll=0;ll<numo;ll++){
+        sep.push(txtD_separado[ll].split(';'));
+    }
+
+    for(let m=0;m<numo;m++){
+        info_D.c.push(sep[m][0]);
+        info_D.p.push(sep[m][1]);
+        info_D.n.push(Number.parseInt(sep[m][2]));
+    }
+    console.log(info_D);
+}
 
 //Funcion Distancia entre puntos
 Number.prototype.toRad = function() {
@@ -93,12 +128,11 @@ btn0.addEventListener('click', (evt) => {
     console.log(txtC);
     separarTxtC();
     guardarClassC();
-    distancia(lat1_ej,lon1_ej,lat2_ej,lon2_ej);
 })
 
 btn1.addEventListener('click', (evt) => {
-    guardarTxtC();
-    console.log(txtC);
-    separarTxtC();
-    guardarClass();
+    guardarTxtD();
+    console.log(txtD);
+    separarTxtD();
+    guardarClassD();
 })

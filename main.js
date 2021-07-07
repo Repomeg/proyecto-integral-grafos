@@ -1,9 +1,13 @@
 //Recibir archivo Coordenada y mostrar en pantalla txt.
+
+/*
 window.addEventListener("load", inicio, false);
+
 
 function inicio() {
   document.getElementById("archivo").addEventListener("change", cargar, false);
 }
+*/
 
 function cargar(ev) {
   var arch = new FileReader();

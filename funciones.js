@@ -41,7 +41,7 @@ const info_D = new distribucion;
 
 //Funcion Guardar Info txt Coordenada 
 const guardarTxtC = () => {
-    txtC = document.getElementById("pantalla").value;
+    txtC = document.getElementById("pantalla-1").value;
 }
 
 const separarTxtC = () => {
@@ -74,19 +74,18 @@ const guardarClassC = () => {
     console.log(info_C);
 }
 
-document.getElementById("leerContenido").addEventListener("click", leerContenido);
-function leerContenido(){
+const leerContenido = () => {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-            document.getElementById("texto").innerHTML = this.responseText;
+            document.getElementById("pantalla-1").innerHTML = this.responseText;
         }
     };
-        
-    xhr.open("GET", "txtprueba.txt", true);
-        
+    xhr.open("GET", "txtprueba.txt", true);  
     xhr.send();
 }
+
+
 
 //Funcion Guardar Info txt Distribucion
 const guardarTxtD = () => {

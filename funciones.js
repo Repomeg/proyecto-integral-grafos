@@ -19,6 +19,7 @@ let txtD; // --> Info Distribucion txt ingresado
 let txtD_separado = [];
 
 let arr_Cantcaminos = []; // --> Cantidad de caminos de distribucion separados en cada casilla de arr
+let camino = []; // --> Rutas por centro de distribucion
 
 let lat1_ej = -53.783333;
 let lon1_ej = -67.7; 
@@ -26,6 +27,8 @@ let lat2_ej = -54.807222;
 let lon2_ej = -68.304444; 
 
 let matrizDistancias = []; // --> Distancia entre todos los puntos
+
+let matriz_DistaciaCaminos = []; // --> En cada posicion tendra una matriz distanica (Posicion por cada ruta Centro Distribucion)
 
 //Clases
 class puntos{
@@ -179,6 +182,32 @@ const cantPuntosCamino = () => {
     console.log(arr_Cantcaminos);
 }
 
+//Funcion que separa en un array los distintos caminos de distribucion
+const crearCaminos = () => {
+    let num = arr_Cantcaminos.length;
+    let cont=0;
+
+    for(let h=0;h<num;h++){
+        for(let a=0;a<arr_Cantcaminos[h];a++){
+            camino[h] = new Array 
+        }
+    }
+
+    console.log(info_D.p)
+    
+    for(let i=0;i<num;i++){
+        for(let j=0;j<arr_Cantcaminos[i];j++){
+            let index = info_D.p[cont];
+            let aux = Pven.n.findIndex(pem => pem == index);
+            console.log('Posicion: '+aux);
+
+            camino[i][j] = [Pven.n[aux],Pven.x[aux],Pven.y[aux]]; 
+            cont++;
+        }
+    }
+    console.table(camino);
+}
+
 //Funcion devuelve matriz con las distancias entre todos los pares de puntos
 const llenarInfoCaminos = () => {
     let num = Pdis.n.length+Pven.n.length;
@@ -220,5 +249,6 @@ btn1.addEventListener('click', (evt) => {
     separarTxtD();
     guardarClassD();
     cantPuntosCamino();
-    llenarInfoCaminos();
+    crearCaminos();
+    //llenarInfoCaminos();
 })

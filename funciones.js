@@ -20,14 +20,8 @@ let txtD_separado = [];
 
 let arr_Cantcaminos = []; // --> Cantidad de caminos de distribucion separados en cada casilla de arr
 let camino = []; // --> Rutas por centro de distribucion
-
-let lat1_ej = -53.783333;
-let lon1_ej = -67.7; 
-let lat2_ej = -54.807222; 
-let lon2_ej = -68.304444; 
-
+ 
 let matrizDistancias = []; // --> Distancia entre todos los puntos
-
 let matriz_DistaciaCaminos = []; // --> En cada posicion tendra una matriz distanica (Posicion por cada ruta Centro Distribucion)
 
 //Clases
@@ -206,33 +200,44 @@ const crearCaminos = () => {
         }
     }
     console.table(camino);
+    console.table(camino[0]);
+    console.log(camino[0][0][1]);
+    console.log(camino[0][0][2]);
 }
 
 //Funcion devuelve matriz con las distancias entre todos los pares de puntos
-const llenarInfoCaminos = () => {
-    let num = Pdis.n.length+Pven.n.length;
+const llenarInfoCaminos = (aux,C_num) => {
+    //let aux = camino[0];
+    let num = aux.length
     let matrizCoor = [];
 
-    for(let j=0; j<Pven.n.length; j++){
-        matrizCoor.push([Pven.x[j],Pven.y[j]]);
+    matrizCoor.push([Pdis.x[C_num],Pdis.y[C_num]]);
+
+    for(let i=0;i<num;i++){
+        matrizCoor.push([aux[i][1],aux[i][2]]);
     }
-    for(let i=0; i<Pdis.n.length; i++){
-        matrizCoor.push([Pdis.x[i],Pdis.y[i]]);
-    }
-    console.log(matrizCoor);
-    console.log(matrizCoor[0]);
+
+    console.log(matrizCoor.length);
 
     let matrizDistancias = []; // --> Crea matriz cuadrada
-    for(let y=0; y<num; y++) {
+    for(let y=0; y<matrizCoor.length; y++) {
         matrizDistancias[y] = new Array;
     }
-
-    for(let l=0; l<num; l++){
-        for(let m=0; m<num; m++){
+    for(let l=0; l<matrizCoor.length; l++){
+        for(let m=0; m<matrizCoor.length; m++){
             matrizDistancias[l][m]=distancia(matrizCoor[l],matrizCoor[m]);
         }
     }
     console.table(matrizDistancias);
+    return(matrizDistancias);
+}
+
+const crearRutas = () => {
+    for(let i=0;i<camino.length;i++){
+        matriz_DistaciaCaminos.push(llenarInfoCaminos(camino[i],i));
+        console.table(matriz_DistaciaCaminos[i]);
+    }
+    
 }
 
 //Botones
@@ -251,4 +256,5 @@ btn1.addEventListener('click', (evt) => {
     cantPuntosCamino();
     crearCaminos();
     //llenarInfoCaminos();
+    crearRutas();
 })

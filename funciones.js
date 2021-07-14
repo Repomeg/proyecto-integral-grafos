@@ -181,17 +181,17 @@ const guardarClassD = () => {
       for(let ai=0;ai<info_D.c.length;ai++){
           if(Pdis.n.includes(info_D.c[ai])==false){
              p=info_D.c[ai];
-             alert(p + " No es una opcion Valida");
+             alert(p + " No es valido");
              location.reload();
           }
           if(Pven.n.includes(info_D.p[ai])==false){
             p=info_D.p[ai];
-            alert(p + " No es una opcion Valida");
+            alert(p + " No es valido");
             location.reload(); 
           }
           if(esEntero(info_D.n[ai])==false){
             p=info_D.n[ai];
-            alert(p + " No es una opcion Valida");
+            alert(p + " No es valido");
             location.reload(); 
           }
       }

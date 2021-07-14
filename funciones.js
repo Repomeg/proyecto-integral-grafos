@@ -46,6 +46,13 @@ class distribucion {
     }
 }
 
+function esEntero(numero){
+    if (numero - Math.floor(numero) == 0) {
+      return true;
+    } else {
+         return false;
+    }
+}
 //Clases Puntos Distribucion Y Ventas
 const Pdis = new puntos;
 const Pven = new puntos;
@@ -102,6 +109,34 @@ const guardarClassC = () => {
             Pdis.y.push(Number.parseInt(sep[m][3]));
         }
     }
+  
+        for(let z=0;z<sep.length;z++){
+            if(sep[z][0]!="P" && sep[z][0]!="C"){
+                x= sep[z][0];
+                alert(x +" no es valido");  
+                location.reload();         
+                
+            }
+            if(esEntero(sep[z][1])==false){  
+                x= sep[z][1];
+                alert(x +" no es valido");     
+                location.reload();
+               
+            }
+            if(esEntero(sep[z][2])==false){  
+                x= sep[z][2];
+                alert(x +" no es valido");  
+                location.reload();            
+                
+            }
+            if(esEntero(sep[z][3])==false){  
+                x= sep[z][3];
+                alert(x +" no es valido");  
+                location.reload();             
+                
+            }
+        }
+    
     console.log(Pven);
     console.log(Pdis);
 }
@@ -126,9 +161,8 @@ const separarTxtD = () => {
 
 const guardarClassD = () => {
     let numo = txtD_separado.length;
-
+    var p;
     let sep = [];
-
     info_D.c = [];
     info_D.p = [];
     info_D.n = [];
@@ -140,9 +174,27 @@ const guardarClassD = () => {
     for (let m = 0; m < numo; m++) {
         info_D.c.push(sep[m][0]);
         info_D.p.push(sep[m][1]);
-        info_D.n.push(Number.parseInt(sep[m][2]));
+        info_D.n.push(Number.parseFloat(sep[m][2]));
     }
     console.log(info_D);
+  
+      for(let ai=0;ai<info_D.c.length;ai++){
+          if(Pdis.n.includes(info_D.c[ai])==false){
+             p=info_D.c[ai];
+             alert(p + " No es una opcion Valida");
+             location.reload();
+          }
+          if(Pven.n.includes(info_D.p[ai])==false){
+            p=info_D.p[ai];
+            alert(p + " No es una opcion Valida");
+            location.reload(); 
+          }
+          if(esEntero(info_D.n[ai])==false){
+            p=info_D.n[ai];
+            alert(p + " No es una opcion Valida");
+            location.reload(); 
+          }
+      }
 }
 
 //Funcion Distancia entre puntos

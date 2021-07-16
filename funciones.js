@@ -15,13 +15,13 @@ Array.prototype.unique = function (a) {
 const btn0 = document.querySelector(".btn0");
 const btn1 = document.querySelector(".btn1");
 
+
 //Variables Globales
 let txtC; // --> Info Coordenada txt ingresado
 let txtC_separado = [];
 
 let txtD; // --> Info Distribucion txt ingresado
 let txtD_separado = [];
-
 let arr_Cantcaminos = []; // --> Cantidad de caminos de distribucion separados en cada casilla de arr
 let camino = []; // --> Rutas por centro de distribucion
 
@@ -67,6 +67,7 @@ const guardarTxtC = () => {
 }
 
 const separarTxtC = () => {
+
     txtC_separado = [];
 
     let aux = txtC.split('\n');
@@ -359,6 +360,7 @@ function try1(i,dist) {
     }
     return [lugar,menor1]; //RETORNA EL CENTRO MAS CERCANO
 }
+
 //Botones
 btn0.addEventListener('click', (evt) => {
     guardarTxtC();
@@ -377,3 +379,4 @@ btn1.addEventListener('click', (evt) => {
     //llenarInfoCaminos();
     crearRutas();
 })
+

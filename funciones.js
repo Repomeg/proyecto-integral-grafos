@@ -1,6 +1,6 @@
 //Document Botones
 const btn0 = document.querySelector(".btn0");
-const btn1 = document.querySelector(".btn1");
+//const btn1 = document.querySelector(".btn1");
 
 //Variables Globales
 let txtC; // --> Info Coordenada txt ingresado
@@ -13,10 +13,6 @@ let lat1_ej = -53.783333;
 let lon1_ej = -67.7; 
 let lat2_ej = -54.807222; 
 let lon2_ej = -68.304444; 
-
-window.onload = function(){
-    leerContenido();
-}
 
 //Clases
 class puntos{
@@ -73,19 +69,6 @@ const guardarClassC = () => {
     }
     console.log(info_C);
 }
-
-const leerContenido = () => {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
-            document.getElementById("pantalla-1").innerHTML = this.responseText;
-        }
-    };
-    xhr.open("GET", "txtprueba.txt", true);  
-    xhr.send();
-}
-
-
 
 //Funcion Guardar Info txt Distribucion
 const guardarTxtD = () => {
@@ -145,11 +128,18 @@ btn0.addEventListener('click', (evt) => {
     console.log(txtC);
     separarTxtC();
     guardarClassC();
+
+    guardarTxtD();
+    console.log(txtD);
+    separarTxtD();
+    guardarClassD();
 })
 
+/*
 btn1.addEventListener('click', (evt) => {
     guardarTxtD();
     console.log(txtD);
     separarTxtD();
     guardarClassD();
 })
+*/

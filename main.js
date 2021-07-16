@@ -1,22 +1,17 @@
 //Recibir archivo Coordenada y mostrar en pantalla txt.
-
-/*
-window.addEventListener("load", inicio, false);
-
-
-function inicio() {
-  document.getElementById("archivo").addEventListener("change", cargar, false);
-}
-*/
-
-function cargar(ev) {
-  var arch = new FileReader();
-  arch.addEventListener("load", leer, false);
-  arch.readAsText(ev.target.files[0]);
+window.onload = function(){
+  leerContenido();
 }
 
-function leer(ev) {
-  document.getElementById("pantalla").value = ev.target.result;
+const leerContenido = () => {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(){
+      if(this.readyState == 4 && this.status == 200){
+          document.getElementById("pantalla-1").innerHTML = this.responseText;
+      }
+  };
+  xhr.open("GET", "txtprueba.txt", true);  
+  xhr.send();
 }
 
 //--------------------------------------------------------------------------------------------------------------------------------

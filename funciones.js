@@ -12,7 +12,7 @@ Array.prototype.unique = function (a) {
 });
 
 //Document Botones
-const btn0 = document.querySelector(".btn0");
+
 const btn1 = document.querySelector(".btn1");
 
 //Variables Globales
@@ -79,6 +79,8 @@ const separarTxtC = () => {
 
 const guardarClassC = () => {
     let numi = txtC_separado.length;
+
+    let aux = [];
     let sep = [];
 
     Pven.n = [];
@@ -89,7 +91,8 @@ const guardarClassC = () => {
     Pdis.y = [];
 
     for (let l = 0; l < numi; l++) {
-        sep.push(txtC_separado[l].replace(',', ';').split(';'));
+        aux.push(txtC_separado[l].replace(',', ';'));
+        sep.push(aux[l].split(';'));
     }
 
     for (let m = 0; m < numi; m++) {
@@ -162,6 +165,7 @@ const guardarClassD = () => {
     info_D.c = [];
     info_D.p = [];
     info_D.n = [];
+    var suma=0;
 
     for (let ll = 0; ll < numo; ll++) {
         sep.push(txtD_separado[ll].split(';'));
@@ -190,6 +194,13 @@ const guardarClassD = () => {
             alert(p + " No es valido");
             location.reload(); 
           }
+      }
+      for( p=0;p<info_D.n.length;p++){
+        suma+=info_D.n[p];
+      }
+      if(suma>1000){
+          alert("No pueden ser mas de 1000 productos por centro.");
+          location.reload();
       }
 }
 
@@ -298,6 +309,7 @@ const llenarInfoCaminos = (aux, C_num) => {
             }
         }
     }
+    
     distancias.push(['C'+Number.parseInt(C_num+1), nuevo, menor.toFixed(5)]);
     visitados.push(0);
 
@@ -318,20 +330,25 @@ const llenarInfoCaminos = (aux, C_num) => {
         
     }
       
-    for (let y = 0; y < distancias.length; y++) {
-        console.log("La ruta va desde: " + distancias[y][0] + " hasta: " + distancias[y][1] + " recorriendo: " + distancias[y][2] + " KM");
-    }
+    
     visitados=[];
     console.log(distancias);
-    console.log(visitados);
+
     console.table(matrizDistancias);
     return (matrizDistancias);
 }
 
 const crearRutas = () => {
     for (let i = 0; i < camino.length; i++) {
+        distancias=[];
         matriz_DistaciaCaminos.push(llenarInfoCaminos(camino[i], i));
         console.table(matriz_DistaciaCaminos[i]);
+            console.log("Ruta del Camion: "+ Number.parseInt(i+1));
+            for (let y = 0; y < distancias.length; y++) {
+                console.log("La ruta va desde: " + distancias[y][0] + " hasta: " + distancias[y][1] + " recorriendo: " + distancias[y][2] + " KM");             
+            }
+         
+
     }
 
 }
@@ -356,14 +373,14 @@ function try1(i,dist) {
     return [lugar,menor1]; //RETORNA EL CENTRO MAS CERCANO
 }
 //Botones
-btn0.addEventListener('click', (evt) => {
+
+
+btn1.addEventListener('click', (evt) => {
     guardarTxtC();
     console.log(txtC);
     separarTxtC();
     guardarClassC();
-})
 
-btn1.addEventListener('click', (evt) => {
     guardarTxtD();
     console.log(txtD);
     separarTxtD();

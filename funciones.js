@@ -96,7 +96,6 @@ const guardarClassC = () => {
     }
 
     for (let m = 0; m < numi; m++) {
-        console.log(sep[0]);
         if (sep[m][0] == 'P') {
             Pven.n.push(sep[m][1]);
             Pven.x.push(Number.parseInt(sep[m][2]));

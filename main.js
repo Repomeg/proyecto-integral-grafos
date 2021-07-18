@@ -7,10 +7,10 @@ const leerContenido = () => {
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(){
       if(this.readyState == 4 && this.status == 200){
-          document.getElementById("pantalla-1").innerHTML = this.responseText;
+          document.getElementById("pantalla-dis").innerHTML = this.responseText;
       }
   };
-  xhr.open("GET", "txtprueba.txt", true);  
+  xhr.open("GET", "Pedidos.txt", true);  
   xhr.send();
 }
 
@@ -30,5 +30,5 @@ function cargarD(ev) {
 }
 
 function leerD(ev) {
-  document.getElementById("pantalla-dis").value = ev.target.result;
+  document.getElementById("pantalla-1").value = ev.target.result;
 }

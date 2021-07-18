@@ -166,6 +166,7 @@ const guardarClassD = () => {
     info_D.c = [];
     info_D.p = [];
     info_D.n = [];
+    var suma=0;
 
     for (let ll = 0; ll < numo; ll++) {
         sep.push(txtD_separado[ll].split(';'));
@@ -194,6 +195,13 @@ const guardarClassD = () => {
             alert(p + " No es valido");
             location.reload(); 
           }
+      }
+      for(let p=0;p<info_D.n.length;p++){
+        suma+=info_D.n[p];
+      }
+      if(suma>1000){
+          alert("No pueden ser mas de 1000 productos por centro.");
+          location.reload();
       }
 }
 
@@ -302,6 +310,7 @@ const llenarInfoCaminos = (aux, C_num) => {
             }
         }
     }
+    
     distancias.push(['C'+Number.parseInt(C_num+1), nuevo, menor.toFixed(5)]);
     visitados.push(0);
 
@@ -322,20 +331,25 @@ const llenarInfoCaminos = (aux, C_num) => {
         
     }
       
-    for (let y = 0; y < distancias.length; y++) {
-        console.log("La ruta va desde: " + distancias[y][0] + " hasta: " + distancias[y][1] + " recorriendo: " + distancias[y][2] + " KM");
-    }
+    
     visitados=[];
     console.log(distancias);
-    console.log(visitados);
+
     console.table(matrizDistancias);
     return (matrizDistancias);
 }
 
 const crearRutas = () => {
     for (let i = 0; i < camino.length; i++) {
+        distancias=[];
         matriz_DistaciaCaminos.push(llenarInfoCaminos(camino[i], i));
         console.table(matriz_DistaciaCaminos[i]);
+            console.log("Ruta del Camion: "+ Number.parseInt(i+1));
+            for (let y = 0; y < distancias.length; y++) {
+                console.log("La ruta va desde: " + distancias[y][0] + " hasta: " + distancias[y][1] + " recorriendo: " + distancias[y][2] + " KM");             
+            }
+         
+
     }
 
 }

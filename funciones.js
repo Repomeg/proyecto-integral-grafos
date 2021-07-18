@@ -49,9 +49,8 @@ class distribucion {
 function esEntero(numero){
     if (numero - Math.floor(numero) == 0) {
       return true;
-    } else {
+    } 
          return false;
-    }
 }
 //Clases Puntos Distribucion Y Ventas
 const Pdis = new puntos;
@@ -80,8 +79,6 @@ const separarTxtC = () => {
 
 const guardarClassC = () => {
     let numi = txtC_separado.length;
-
-    let aux = [];
     let sep = [];
 
     Pven.n = [];
@@ -92,8 +89,7 @@ const guardarClassC = () => {
     Pdis.y = [];
 
     for (let l = 0; l < numi; l++) {
-        aux.push(txtC_separado[l].replace(',', ';'));
-        sep.push(aux[l].split(';'));
+        sep.push(txtC_separado[l].replace(',', ';').split(';'));
     }
 
     for (let m = 0; m < numi; m++) {
@@ -112,25 +108,25 @@ const guardarClassC = () => {
   
         for(let z=0;z<sep.length;z++){
             if(sep[z][0]!="P" && sep[z][0]!="C"){
-                x= sep[z][0];
+                let x= sep[z][0];
                 alert(x +" no es valido");  
                 location.reload();         
                 
             }
             if(esEntero(sep[z][1])==false){  
-                x= sep[z][1];
+                let x= sep[z][1];
                 alert(x +" no es valido");     
                 location.reload();
                
             }
             if(esEntero(sep[z][2])==false){  
-                x= sep[z][2];
+                let x= sep[z][2];
                 alert(x +" no es valido");  
                 location.reload();            
                 
             }
             if(esEntero(sep[z][3])==false){  
-                x= sep[z][3];
+                let x= sep[z][3];
                 alert(x +" no es valido");  
                 location.reload();             
                 
@@ -288,8 +284,8 @@ const llenarInfoCaminos = (aux, C_num) => {
             matrizDistancias[l][m] = distancia(matrizCoor[l], matrizCoor[m]);
         }
     }
-    console.log(Pdis.n.findIndex(aux=> aux==C_num+1));
-    z=Pdis.n.findIndex(aux=> aux==C_num+1);
+    console.log(Pdis.n.findIndex(aux1=> aux1==C_num+1));
+    z=Pdis.n.findIndex(aux2=> aux2==C_num+1);
     console.log(Pdis.x[0],Pdis.y[0]);
     k=distancia(estacionamiento,[Pdis.x[z],Pdis.y[z]]);
     distancias.push(["E",'C'+Number.parseInt(C_num+1),k.toFixed(5)]);
@@ -311,7 +307,7 @@ const llenarInfoCaminos = (aux, C_num) => {
         respuesta1 = aa[0];
         respuesta2 = aa[1];
         if(ab==matrizDistancias.length-2){
-            z=Pven.n.findIndex(aux=>aux==nuevo);
+            z=Pven.n.findIndex(aux3=>aux3==nuevo);
             k=distancia([Pven.x[z],Pven.y[z]],estacionamiento);
             distancias.push([nuevo,"E", k.toFixed(5)]);
         }else{

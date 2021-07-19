@@ -14,6 +14,12 @@ Array.prototype.unique = function (a) {
 //Document Botones
 
 const btn1 = document.querySelector(".btn1");
+btn1.disabled = true;
+const btn0 = document.querySelector(".btn0");
+
+//Document Caminos
+const Caminos = document.querySelector(".Caminos");
+
 
 //Variables Globales
 let txtC; // --> Info Coordenada txt ingresado
@@ -61,8 +67,8 @@ const info_D = new distribucion;
 
 //Funcion Guardar Info txt Coordena
 const guardarTxtC = () => {
-    txtC = null;
     txtC = document.getElementById("pantalla-1").value;
+    btn1.disabled=false;
 }
 
 const separarTxtC = () => {
@@ -94,6 +100,7 @@ const guardarClassC = () => {
         aux.push(txtC_separado[l].replace(',', ';'));
         sep.push(aux[l].split(';'));
     }
+    
 
     for (let m = 0; m < numi; m++) {
         if (sep[m][0] == 'P') {
@@ -111,25 +118,25 @@ const guardarClassC = () => {
         for(let z=0;z<sep.length;z++){
             if(sep[z][0]!="P" && sep[z][0]!="C"){
                 let x= sep[z][0];
-                alert(x +" no es valido");  
+                alert("El Punto: "+ x +" no es valido");  
                 location.reload();         
                 
             }
             if(esEntero(sep[z][1])==false){  
                 let x= sep[z][1];
-                alert(x +" no es valido");     
+                alert("El Identificador: "+ x +" no es valido");     
                 location.reload();
                
             }
             if(esEntero(sep[z][2])==false){  
                 let x= sep[z][2];
-                alert(x +" no es valido");  
+                alert("La Coordenada: " + x +" no es valida");  
                 location.reload();            
                 
             }
             if(esEntero(sep[z][3])==false){  
                 let x= sep[z][3];
-                alert(x +" no es valido");  
+                alert("La Coordenada: " + x +" no es valida");  
                 location.reload();             
                 
             }
@@ -143,6 +150,9 @@ const guardarClassC = () => {
 const guardarTxtD = () => {
     txtD = null;
     txtD = document.getElementById("pantalla-dis").value;
+    if(Pdis.length==0){
+      alert('hola');   
+    }
 }
 
 const separarTxtD = () => {
@@ -180,17 +190,17 @@ const guardarClassD = () => {
       for(let ai=0;ai<info_D.c.length;ai++){
           if(Pdis.n.includes(info_D.c[ai])==false){
              p=info_D.c[ai];
-             alert(p + " No es valido");
+             alert("El centro: "+ p + " no es valido");
              location.reload();
           }
           if(Pven.n.includes(info_D.p[ai])==false){
             p=info_D.p[ai];
-            alert(p + " No es valido");
+            alert("El punto de venta: "  + p + " no es valido / No existe ");
             location.reload(); 
           }
           if(esEntero(info_D.n[ai])==false){
             p=info_D.n[ai];
-            alert(p + " No es valido");
+            alert("La cantidad: "+ p + " no es valida");
             location.reload(); 
           }
       }
@@ -338,18 +348,16 @@ const llenarInfoCaminos = (aux, C_num) => {
 }
 
 const crearRutas = () => {
+    
     for (let i = 0; i < camino.length; i++) {
         distancias=[];
         matriz_DistaciaCaminos.push(llenarInfoCaminos(camino[i], i));
         console.table(matriz_DistaciaCaminos[i]);
-            console.log("Ruta del Camion: "+ Number.parseInt(i+1));
+            Caminos.innerHTML+=`Ruta del Camion:  ${Number.parseInt(i+1)} <br>`;
             for (let y = 0; y < distancias.length; y++) {
-                console.log("La ruta va desde: " + distancias[y][0] + " hasta: " + distancias[y][1] + " recorriendo: " + distancias[y][2] + " KM");             
+                Caminos.innerHTML+="La ruta va desde: " + distancias[y][0] + " hasta: " + distancias[y][1] + " recorriendo: " + distancias[y][2] + " KM" + "<br>" ;         
             }
-         
-
     }
-
 }
 
 function try1(i,dist) {
@@ -373,13 +381,22 @@ function try1(i,dist) {
 }
 //Botones
 
-
-btn1.addEventListener('click', (evt) => {
+btn0.addEventListener('click', (evt) => {
     guardarTxtC();
+    if(txtC == ["                    "]){
+        alert('El archivo ingresado no es valido');
+        //location.reload();
+        return 0;
+    }
     console.log(txtC);
     separarTxtC();
     guardarClassC();
+    btn1.disabled = false;
+    btn0.disabled = true;
+})
 
+
+btn1.addEventListener('click', (evt) => {
     guardarTxtD();
     console.log(txtD);
     separarTxtD();

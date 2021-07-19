@@ -31,16 +31,87 @@
     </nav>
 
     <br><br><br>
+    <!--Modal-->
+    <div class="d-flex justify-content-center">
+        <!-- Button trigger modal -->
+    <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalLong">
+        Guía de uso
+      </button>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Guía de uso</h5>
+            </div>
+            <div class="modal-body">
+            Para usar esta página, priemero se debe ingresar un archivo .txt el cual incluya las coordenadas en formato  "T;N;X,Y", donde T puede ser "P" (Punto de venta) o "C" (Centro de distribucion), "N" un identificador numerico y "X,Y" siendo la coordenada que esta ubicado el centro o el punto de venta.
+            </div>
+            <div class="modal-body">
+            Para hacer esto simplemente presione el botón "Choose File" y seleccione el archivo. Es importante que este archivo sea .txt, otro tipo de archivo no será aceptado.  
+            </div>
+            <img src="img/Selección archivo 1.png" alt="">
+            <br><br>
+            <img src="img/selección archivo 2.png" alt="">
+            <br><br>
+            <div class="modal-body">
+            Si sus coordenadas salen en el recuadro de la derecha, signfica que todo funcionó correctamente.    
+            </div>
+            <img src="img/cuadro coordenadas.png" alt="">
+            <br><br>
+            <div class="modal-body">
+            Una vez seleccionada las coordenadas, debe fijarse que el texto que aparece en distribución sea el que usted desea, en el caso de que no sea lo que usted necesita, solo debe editar el archivo "Pedidos.txt" ubicado en la raíz del programa.   
+            </div>
+            <img src="img/Pedidos.png" alt="">
+            <br><br>
+            <img src="img/pedidos bien.png" alt="">
+            <br><br>
+            <div class="modal-body">
+            Si todo está correctamente, simplemente presione el botón "Enviar" para que se desplieguen las rutas más óptimas.    
+            </div>
+            <img src="img/enviar.png" alt="">
+            <br><br>
+            </div>
 
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br>
+      <!--Fin Modal-->
     <div class="container bg-light">
         <br>
         <div class="d-flex justify-content-center">
-            <h1>Coordenadas:</h1>
+            <h1>Ingrese las Coordenadas:</h1>
+        </div>
+        <div class="d-flex justify-content-center">
+            <input type="file" id="archivo-dis" accept=".txt">
         </div>
         <hr>
+        <div class="row">
+            <div class="col-sm d-flex justify-content-center">
+                <div>
+                    <h6>Las Coordenadas GPS son un archivo precargado con la pagina, dentro de estas obtendran la localizacion de los centros de distribucion y puntos de ventas y se mostraran a la derecha.</h6>
+                    <br>
+                    <h6>El archivo es un texto plano donde los datos vienen de la manera "T;N;X,Y", donde T puede ser "P" (Punto de venta) o "C" (Centro de distribucion), "N" un identificador numerico y "X,Y" siendo la coordenada que esta ubicado el centro o el punto de venta.</h6>
+                    <br>
+                    <h6>Note que el archivo dentro de la carpeta es "txtprueba.txt".</h6>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="d-flex justify-content-center">
+                    <textarea  id="pantalla-1" cols="30" rows="10" disabled>
+                    </textarea>
+                </div>
+            </div>
+        </div>
         <div class="d-flex justify-content-center">
-            <textarea  id="pantalla-1" cols="30" rows="10" disabled>
-            </textarea>
+            <button type="button" class="btn0">Enviar</button>
         </div>
         <br><br>
     </div>
@@ -50,14 +121,25 @@
     <div class="container bg-light">
         <br>
         <div class="d-flex justify-content-center">
-            <h1>Ingrese Su Distribucion txt: </h1>
-        </div>
-        <div class="d-flex justify-content-center">
-            <input type="file" id="archivo-dis" accept=".txt">
+
+            <h1>Distribucion:</h1>
         </div>
         <hr>
-        <div class="d-flex justify-content-center">
-            <textarea  id="pantalla-dis" cols="30" rows="10" disabled></textarea>
+        <div class="row">
+            <div class="col-sm">
+                <h6>La distribucion es el archivo que contiene las demandas de productos del dia, siendo la cantidad de productos demandada por cada punto de venta y que centros de distribucion alimentaran cuales puntos de venta.</h6>
+                <br>
+                <h6>El archivo es previamente cargado y tiene la estructura de "C;P;N", siendo "C" el centro de distribucion, "P" es el punto de venta y "N" es la cantidad de productos a repartir desde el centro "C" a "P".</h6>
+                <br>
+                <h6>Note que el archivo dentro de la carpeta es "Pedidos.txt".</h6>
+            </div>
+
+            <div class="col-sm">
+                <div class="d-flex justify-content-center">
+                    <textarea  id="pantalla-dis" cols="30" rows="10" disabled></textarea>
+                </div>
+            </div>
+
         </div>
         <br>
         <div class="d-flex justify-content-center">
@@ -66,9 +148,30 @@
         <br>
     </div>
     <br><br>
-
+    <div class="container bg-light">
+        
+        <div>
+        <h1 class="d-flex justify-content-center">Resultado final</h1>
+        </div>
+        <hr>
+        <br><br>
+        <div class="d-flex justify-content-center">
+        <div class="Caminos"></div>
+        </div>
+        <br><br>
+        <hr>
+        <div>
+        NOTA: La distancia entre cada par de puntos es calculada de manera geográfica, para esto se utilizó la formula de Haversine.     
+        </div>
+        
+    </div>
+    <br><br>
+    
     <script src="main.js"></script>
     <script src="funciones.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
